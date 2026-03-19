@@ -38,7 +38,7 @@ metadata:
   name: flipkart-service
   namespace: my-apps
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: flipkart-app
   ports:

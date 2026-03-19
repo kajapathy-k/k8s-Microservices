@@ -39,7 +39,7 @@ metadata:
   name: eycart-service
   namespace: my-apps
 spec:
-  type: NodePort
+  type: clusterIP
   selector:
     app: ey-cart
   ports:
