@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitness-app
+  namespace: my-apps
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: fitness-app
+  template:
+    metadata:
+      labels:
+        app: fitness-app
+    spec:
+      containers:
+      - name: fitness-app
+        image: muralisocial123/fitness-app:v1.0.1
+        ports:
+        - containerPort: 5000
+
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fitness-app-service
+  namespace: my-apps
+spec:
+  type: NodePort
+  selector:
+    app: fitness-app
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30001
