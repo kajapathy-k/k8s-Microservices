@@ -44,4 +44,3 @@ spec:
   ports:
     - port: 3015
       targetPort: 3015
-      nodePort: 30002
