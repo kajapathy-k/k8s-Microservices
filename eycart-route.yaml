@@ -7,16 +7,16 @@ spec:
   parentRefs:
   - name: k-kgateway
   rules:
-    - matches:
-       - path:
-          type: PathPrefix
-          value: /
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replicaPrefixMatch: /
-      backendRefs:
-        - name: eycart-service
-          port: 3000
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
+    backendRefs:
+    - name: eycart-service
+      port: 3000
