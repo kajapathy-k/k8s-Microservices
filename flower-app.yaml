@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fitness-app
+  name: flower-app
   namespace: my-apps
 spec:
   replicas: 2
@@ -12,18 +12,17 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: fitness-app
+      app: flower-app
   template:
     metadata:
       labels:
-        app: fitness-app
+        app: flower-app
     spec:
       containers:
-      - name: fitness-app
-        image: muralisocial123/fitness-app:v1.0.1
+      - name: flower-app
+        image: muralisocial123/kyndrl-flower-app:v1.1.0
         ports:
-        - containerPort: 5000
-
+        - containerPort: 3015
         resources:
           requests:
             cpu: "200m"
@@ -36,13 +35,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: fitness-app-service
+  name: flower-service
   namespace: my-apps
 spec:
   type: ClusterIP
   selector:
-    app: fitness-app
+    app: flower-app
   ports:
-    - port: 5000
-      targetPort: 5000
-      nodePort: 30001
+    - port: 3015
+      targetPort: 3015
+      nodePort: 30002
